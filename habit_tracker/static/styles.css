@@ -1,0 +1,340 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FEF9F2;
+    margin: 0;
+    padding: 0;
+    transition: background-color 1.0s, color 1.0s;
+}
+
+/* Add Habit Button (Plus Sign) */
+.add-habit-btn {
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #9CDBA6;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* The Popup for adding the habits */
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    padding-top: 100px;
+}
+
+/* Popup Content */
+.popup-content {
+    background-color: white;
+    color: black;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Style the form inside the popup */
+#habit-form input{
+    width: 93%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#habit-form textarea {
+    width: 93%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; 
+    height: 100px; 
+}
+
+#habit-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#habit-form button:hover {
+    background-color: #45a049;
+}
+
+/* Popup dark mode */
+body.dark-mode .popup-content{
+    background-color: #222;
+    color: white;
+}
+
+body.dark-mode #habit-form button{
+    background-color: #3e8e41;
+}
+
+#habit-form select {
+ margin-bottom: 30px;
+ height: 30px;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    padding: 0;
+}
+
+h4{
+    padding: 0px;
+    text-align: center;
+    font-size: medium;
+}
+
+.plus-sign{
+    font-weight: bolder;
+}
+
+.add-habit-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.add-habit-form input {
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.add-habit-form button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.habits-list {
+    max-width: 900px;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.habit-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    width: calc(100% - 40px);
+    max-width: 900px;
+}
+
+.habit-item p {
+    font-size: 18px;
+}
+
+button {
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bolder;
+    margin-right: 10px;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Calendar style */
+.calendar-container{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 30px;
+        margin-top: 20px;
+}
+
+/*calendar.html*/
+.habit-info{
+    flex: 1;
+}
+
+#calendar {
+    width: 300px;
+    max-width: 500px;
+    margin: auto;
+    color: #17153B;
+    background-color: #f4e3d7;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    flex: 1 1 300px;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .calendar-header button {
+    background: none;
+    border: none;
+    color: #17153B;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .calendar-header #month-name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .calendar-grid {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .calendar-grid th,
+  .calendar-grid td {
+    width: 14%;
+    height: 40px;
+    text-align: center;
+  }
+  
+  .calendar-grid td {
+    background-color: #f4e3d7;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .calendar-grid td:hover {
+    background-color: #f4e3d7;
+  }
+  
+  .calendar-grid td.inactive {
+    color: #888;
+    cursor: default;
+  }
+  
+  .calendar-grid td.active {
+    background-color: #f4e3d7;
+  }
+
+/* Dark mode style */
+.dark-mode {
+    background-color: #121212;
+    color: white;
+  }
+
+  #toggle-dark-mode {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    transition: color 1.0s ease;
+  }
+
+  /* Change the moon or sun color in dark mode */
+  .dark-mode #toggle-dark-mode i {
+    color: #ffcc00;  /* Sun icon color in dark mode */
+  }
+
+  /* Responsiveness for smaller screens */
+@media (max-width: 768px) {
+    
+    .habits-list {
+        align-items: center;
+    }
+
+    .habit-item {
+        padding: 10px;
+        width: 90%;
+        height: 100px;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .habit-item button {
+        font-size: 10px;
+        padding: 6px 10px;
+    }
+
+    .habit-item form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .habit-item p {
+        font-size: 13px;
+        word-wrap: break-word;
+    }
+
+    /* Stack calendar and habit info */
+    .calendar-container {
+        flex-direction: column;
+    }
+
+}
+
+@media (min-width: 769px) {
+    .habit-item button {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+}
+
+h2, h3, p, ul li, button {
+    font-size: calc(1rem + 0.3vw);
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Habit Activity</h1>
+        <br> <br> <br> <br>
+        <div class="calendar-container">
+          <!-- Habit Info -->
+          <div class="habit-info">
+              <h2>{{ habit.name }}</h2>
+              <p>{{ habit.description }}</p>
+              <p>_______________________________________</p>
+              <p>Started on: {{ habit.start_date }}</p>
+              <p>Completed Days: {{ habit.streak }}</p>
+              <h3>You have completed this habit on the dates below:</h3>
+              <ul>
+                  {% for date in dates %}
+                      <li>{{ date }}</li>
+                  {% endfor %}
+              </ul>
+          </div>
+      
+          <!-- Calendar -->
+          <div id="calendar">
+              <div class="calendar-header">
+                  <button id="prev-month">←</button>
+                  <span id="month-name">February</span>
+                  <button id="next-month">→</button>
+              </div>
+              <table class="calendar-grid">
+                  <thead>
+                      <tr>
+                          <th>Su</th>
+                          <th>Mo</th>
+                          <th>Tu</th>
+                          <th>We</th>
+                          <th>Th</th>
+                          <th>Fr</th>
+                          <th>Sa</th>
+                      </tr>
+                  </thead>
+                  <tbody id="calendar-body">
+                      <!-- Calendar days are dynamically added here -->
+                  </tbody>
+              </table>
+          </div>
+      </div>
+    
+      <script>
+        const completedDates = JSON.parse('{{ dates|tojson}}');
+        const habitColor = '{{ habit.color }}';
+     </script>
+    
+<script src="/static/calendar.js"></script>
+<script src="/static/darkmode.js"></script>
+
+</body>
+</html>

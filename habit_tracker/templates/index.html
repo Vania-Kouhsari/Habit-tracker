@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!--STEP 4 adding jquery-->
+</head>
+<body>
+    <div class="container">
+        <h1>Habit Tracker</h1>
+        <h4>
+            Welcome to the Habit Tracker app :) <br>
+            Click the <span class="plus-sign"> ' + ' </span> to add a new habit!
+        </h4>
+        <br>
+
+        <!-- Add Habit Button as a Plus Sign -->
+        <button id="toggle-dark-mode">
+            <i class="fas fa-moon" id="mode-icon"></i> 
+          </button>
+        <button id="add-habit-btn" class="add-habit-btn">+</button>
+
+        <!-- Popup Form -->
+        <div id="habit-popup" class="popup">
+            <div class="popup-content">
+                <span id="close-popup" class="close">&times;</span>
+                <h2>Add a New Habit</h2>
+                <form id="habit-form" action="/add" method="POST">
+                    <input type="text" name="name" placeholder="Habit Name" required>
+                    <textarea name="description" placeholder="Habit Description" maxlength="300"></textarea>
+                    <!--Adding option for colors-->
+                    <h3>Select a color for your habit:</h3>
+                    <select name="color" required>
+                        <option value="#CB9DF0">Purple</option>
+                        <option value="#A1EEBD">Green</option>
+                        <option value="#B1F0F7">Blue</option>
+                        <option value="#F0E68C">Yellow</option>
+                        <option value="#9AA6B2">Gray</option>
+                        <option value="#FFCCE1">Pink</option>
+                    </select>
+                    <button type="submit">Add Habit</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Display all habits -->
+        <div class="habits-list">
+            <h5>*Note that you can only mark a habit as completed once per day!</h5>
+            {% for habit in habits %}
+                <div class="habit-item" style="background-color: {{ habit[3] }};">
+                    <p><strong>{{ habit[1] }}</strong> (Started on: {{ habit[4] }})</p>
+                    <p>Completed Days: {{ habit[5] }} </p>
+                    <form action="/update_streak/{{ habit[0] }}" method="POST" style="display:inline;">
+                        <button id="update" type="submit">Mark Complete</button>
+                    </form>
+                    <form action="/calendar/{{ habit[0] }}" method="get" style="display: inline;">
+                        <button type="submit">View Activity</button>
+                    </form>
+                    <form action="/delete/{{ habit[0] }}" method="POST" style="display:inline;">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form>
+                    
+                </div>
+            {% endfor %}
+        </div>
+  
+    </div>
+
+    <script src="/static/script.js"></script> 
+    <script src="/static/darkmode.js"></script>
+
+</body>
+</html>
