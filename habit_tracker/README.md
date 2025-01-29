@@ -67,6 +67,8 @@ habit-tracker/
 │   ├── init.py
 │   ├── models.py
 │   └── routes.py
+├── docs_phase3/
+│   └── Habit-Tracker-Vid.mp4
 ├── static/
 │   ├── calendar.js
 │   ├── darkmode.js
